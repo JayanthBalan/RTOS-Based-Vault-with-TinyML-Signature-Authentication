@@ -1,0 +1,101 @@
+lcd::: Start Screen
+spiffs::: Loaded
+lcd::: Access Screen
+comm_tx::: Header Transmitted
+comm_tx::: vec_size = 750
+comm_tx::: Sent 0/750
+comm_tx::: Sent 10/750
+comm_tx::: Sent 20/750
+comm_tx::: Sent 30/750
+comm_tx::: Chunk 35 failed: 5
+comm_tx::: Timeout comm_tx::: Sent 40/750
+comm_tx::: Sent 50/750
+comm_tx::: Sent 60/750
+comm_tx::: Sent 70/750
+comm_tx::: Sent 80/750
+comm_tx::: Sent 90/750
+comm_tx::: Sent 100/750
+comm_tx::: Chunk 106 failed: 2
+comm_tx::: NACK Address comm_tx::: Sent 110/750
+comm_tx::: Chunk 111 failed: 5
+comm_tx::: Timeout comm_tx::: Sent 110/750
+comm_tx::: Sent 120/750
+comm_tx::: Sent 130/750
+comm_tx::: Sent 140/750
+comm_tx::: Sent 150/750
+comm_tx::: Sent 160/750
+comm_tx::: Sent 170/750
+comm_tx::: Sent 180/750
+comm_tx::: Sent 190/750
+comm_tx::: Sent 200/750
+comm_tx::: Sent 210/750
+comm_tx::: Sent 220/750
+comm_tx::: Sent 230/750
+comm_tx::: Chunk 239 failed: 2
+comm_tx::: NACK Address comm_tx::: Sent 240/750
+comm_tx::: Sent 250/750
+comm_tx::: Sent 260/750
+comm_tx::: Sent 270/750
+comm_tx::: Sent 280/750
+comm_tx::: Sent 290/750
+comm_tx::: Sent 300/750
+comm_tx::: Sent 310/750
+comm_tx::: Chunk 317 failed: 5
+comm_tx::: Timeout comm_tx::: Sent 320/750
+comm_tx::: Sent 330/750
+comm_tx::: Sent 340/750
+comm_tx::: Sent 350/750
+comm_tx::: Sent 360/750
+comm_tx::: Sent 370/750
+comm_tx::: Chunk 375 failed: 2
+comm_tx::: NACK Address comm_tx::: Sent 380/750
+comm_tx::: Sent 390/750
+comm_tx::: Sent 400/750
+comm_tx::: Sent 410/750
+comm_tx::: Sent 420/750
+comm_tx::: Sent 430/750
+comm_tx::: Chunk 431 failed: 5
+comm_tx::: Timeout comm_tx::: Sent 430/750
+comm_tx::: Sent 440/750
+comm_tx::: Sent 450/750
+comm_tx::: Sent 460/750
+comm_tx::: Sent 470/750
+comm_tx::: Sent 480/750
+comm_tx::: Sent 490/750
+comm_tx::: Chunk 500 failed: 2
+comm_tx::: NACK Address comm_tx::: Chunk 500 failed: 5
+comm_tx::: Timeout comm_tx::: Sent 500/750
+comm_tx::: Sent 510/750
+comm_tx::: Chunk 518 failed: 5
+comm_tx::: Timeout comm_tx::: Sent 520/750
+comm_tx::: Sent 530/750
+comm_tx::: Sent 540/750
+comm_tx::: Sent 550/750
+comm_tx::: Sent 560/750
+comm_tx::: Sent 570/750
+comm_tx::: Sent 580/750
+comm_tx::: Chunk 590 failed: 2
+comm_tx::: NACK Address comm_tx::: Sent 590/750
+comm_tx::: Sent 600/750
+comm_tx::: Sent 610/750
+comm_tx::: Sent 620/750
+comm_tx::: Sent 630/750
+comm_tx::: Sent 640/750
+comm_tx::: Chunk 646 failed: 2
+comm_tx::: NACK Address comm_tx::: Sent 650/750
+comm_tx::: Sent 660/750
+comm_tx::: Sent 670/750
+comm_tx::: Sent 680/750
+comm_tx::: Sent 690/750
+comm_tx::: Sent 700/750
+comm_tx::: Sent 710/750
+comm_tx::: Sent 720/750
+comm_tx::: Sent 730/750
+comm_tx::: Sent 740/750
+comm_rx::: Invalid Reply = _�
+lcd::: Valid Signature
+lcd::: Storage Page
+lcd::: Password = OQRS Z - FOL6756
+spiffs::: Saved
+lcd::: Start Screen
+spiffs::: Loaded
