@@ -1,0 +1,896 @@
+---- Opened the serial port COM3 ----
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 6
+sd::: Fail signatures = 6
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "t" ----
+����������������������������������������������������������������nn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 10
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Pass
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 10
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Fail
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 10
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Pass
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 10
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Fail
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 10
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Fail
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 10
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Pass
+knn::: Completed
+
+
+sd::: Performance Metrics
+sd::: TP = 2; TN = 2; FP = 1; FN = 1
+sd::: Accuracy = 0.67
+sd::: Precision = 0.67
+sd::: Recall = 0.67
+sd::: FAR = 0.33
+sd::: FRR = 0.33
+sd::: F1 = 0.67
+
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 6
+sd::: Fail signatures = 6
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "x" ----
+sd::: Removing File 0sd::: File 0 removed.
+sd::: Empty file 0 created
+sd::: Removing File 1sd::: File 1 removed.
+sd::: Empty file 1 created
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 0
+sd::: Fail signatures = 0
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "p" ----
+rx_comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+sd::: Appending 750 points
+sd::: Append Success at path: 1
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 1
+sd::: Fail signatures = 0
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "p" ----
+rx_comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+sd::: Appending 750 points
+sd::: Append Success at path: 1
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 2
+sd::: Fail signatures = 0
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "p" ----
+����������������������������������������������������������������_comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+sd::: Appending 750 points
+sd::: Append Success at path: 1
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 3
+sd::: Fail signatures = 0
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "p" ----
+����������������������������������������������������������������comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+sd::: Appending 750 points
+sd::: Append Success at path: 1
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 4
+sd::: Fail signatures = 0
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "p" ----
+rx_comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+sd::: Appending 750 points
+sd::: Append Success at path: 1
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 5
+sd::: Fail signatures = 0
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "f" ----
+rx_comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+sd::: Appending 750 points
+sd::: Append Success at path: 0
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 5
+sd::: Fail signatures = 1
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "f" ----
+rx_comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+sd::: Appending 750 points
+sd::: Append Success at path: 0
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 5
+sd::: Fail signatures = 2
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "f" ----
+rx_comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+sd::: Appending 750 points
+sd::: Append Success at path: 0
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 5
+sd::: Fail signatures = 3
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "f" ----
+����������������������������������������������������������������x_comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+sd::: Appending 750 points
+sd::: Append Success at path: 0
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 5
+sd::: Fail signatures = 4
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "f" ----
+rx_comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+sd::: Appending 750 points
+sd::: Append Success at path: 0
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 5
+sd::: Fail signatures = 5
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "j" ----
+lock::: Shared Resource (Sign) LockedTasks created
+System Ready
+
+
+
+proc::: Processing Task
+proc::: Trigger DTW computation
+
+sd::: DTW Computation
+sd::: Stored genuine signatures: 5
+sd::: Stored forgery signatures: 5
+
+sd::: Compute training patterns: Genuine Class
+sd::: Training for Stored[0]
+sd::: Training for Stored[1]
+proc::: Received training pattern (8 values)
+sd::: Training for Stored[2]
+proc::: Received training pattern (8 values)
+sd::: Training for Stored[3]
+proc::: Received training pattern (8 values)
+sd::: Training for Stored[4]
+proc::: Received training pattern (8 values)
+
+sd::: Compute training patterns: Forgery Class
+sd::: Training for Stored[0]
+proc::: Received training pattern (8 values)
+2
+rx_comm::: Received 100/750
+sd::: Training for Stored[1]
+proc::: Received training pattern (8 values)
+rx_comm::: Received 200/750
+0
+rx_comm::: Received 300/750
+6
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+sd::: Training for Stored[2]
+proc::: Received training pattern (8 values)
+2
+rx_comm::: Received 700/750
+lock::: Shared Resource (Sign) Unlocked
+sd::: Training for Stored[3]
+proc::: Received training pattern (8 values)
+sd::: Training for Stored[4]
+proc::: Received training pattern (8 values)
+sd::: Mutex sign_lock locked
+sd::: Computing new signature DTW.
+sd::: New vs Genuine Stored[0]
+proc::: Received training pattern (8 values)
+
+proc::: Total training patterns = 10
+sd::: New vs Genuine Stored[1]
+sd::: New vs Genuine Stored[2]
+sd::: New vs Genuine Stored[3]
+sd::: New vs Genuine Stored[4]
+sd::: New vs Forgery Stored[0]
+sd::: New vs Forgery Stored[1]
+sd::: New vs Forgery Stored[2]
+sd::: New vs Forgery Stored[3]
+sd::: New vs Forgery Stored[4]
+sd::: Mutex sign_lock unlocked
+sd::: New DTW
+sd::: Total: 1 new + 10 dataset
+sd::: Completed SD Transactions
+
+proc::: Received new DTW (10 values)
+proc::: Mutex sign_lock unlocked
+proc::: New signature: = 750 points
+
+knn::: Classification
+knn::: Pass Class Training patterns: 5
+knn::: Fail Class Training patterns: 5
+knn::: New DTW values: 10
+knn::: Training model
+knn::: Model trained with 10 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Pass
+knn::: Completed
+
+proc::: Pass
+sd::: Appending 750 points
+Response ready: y1
+sd::: Append Success at path: 1
+proc::: Saved to SD
+proc::: Processing Complete
+
+����������������������������������������������������������������nn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 8
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Fail
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 8
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Pass
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 8
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Pass
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 8
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Fail
+knn::: Completed
+
+
+sd::: Performance Metrics
+sd::: TP = 1; TN = 1; FP = 1; FN = 1
+sd::: Accuracy = 0.50
+sd::: Precision = 0.50
+sd::: Recall = 0.50
+sd::: FAR = 0.50
+sd::: FRR = 0.50
+sd::: F1 = 0.50
+
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 6
+sd::: Fail signatures = 5
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "j" ----
+����������������������������������������������������������������ck::: Shared Resource (Sign) LockedTasks created
+System Ready
+
+
+
+proc::: Processing Task
+proc::: Trigger DTW computation
+
+sd::: DTW Computation
+sd::: Stored genuine signatures: 6
+sd::: Stored forgery signatures: 5
+
+sd::: Compute training patterns: Genuine Class
+sd::: Training for Stored[0]
+sd::: Training for Stored[1]
+proc::: Received training pattern (9 values)
+sd::: Training for Stored[2]
+proc::: Received training pattern (9 values)
+sd::: Training for Stored[3]
+proc::: Received training pattern (9 values)
+sd::: Training for Stored[4]
+proc::: Received training pattern (9 values)
+sd::: Training for Stored[5]
+proc::: Received training pattern (9 values)
+
+sd::: Compute training patterns: Forgery Class
+sd::: Training for Stored[0]
+proc::: Received training pattern (10 values)
+sd::: Training for Stored[1]
+proc::: Received training pattern (9 values)
+4
+1
+3
+sd::: Training for Stored[2]
+rx_comm::: Received 100/750
+proc::: Received training pattern (9 values)
+4
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+5
+rx_comm::: Received 400/750
+rx_comm::: Received 500/750
+rx_comm::: Received 600/750
+5
+sd::: Training for Stored[3]
+proc::: Received training pattern (9 values)
+6
+rx_comm::: Received 700/750
+1
+lock::: Shared Resource (Sign) Unlocked
+sd::: Training for Stored[4]
+proc::: Received training pattern (9 values)
+sd::: Mutex sign_lock locked
+sd::: Computing new signature DTW.
+sd::: New vs Genuine Stored[0]
+proc::: Received training pattern (9 values)
+
+proc::: Total training patterns = 11
+sd::: New vs Genuine Stored[1]
+sd::: New vs Genuine Stored[2]
+sd::: New vs Genuine Stored[3]
+sd::: New vs Genuine Stored[4]
+sd::: New vs Genuine Stored[5]
+sd::: New vs Forgery Stored[0]
+sd::: New vs Forgery Stored[1]
+sd::: New vs Forgery Stored[2]
+sd::: New vs Forgery Stored[3]
+sd::: New vs Forgery Stored[4]
+sd::: Mutex sign_lock unlocked
+sd::: New DTW
+sd::: Total: 1 new + 11 dataset
+sd::: Completed SD Transactions
+
+proc::: Received new DTW (11 values)
+proc::: Mutex sign_lock unlocked
+proc::: New signature: = 750 points
+
+knn::: Classification
+knn::: Pass Class Training patterns: 6
+knn::: Fail Class Training patterns: 5
+knn::: New DTW values: 11
+knn::: Training model
+knn::: Model trained with 11 examples
+knn::: k = 3
+knn::: Confidence: 100.00%
+knn::: Fail
+knn::: Completed
+
+proc::: Fail
+sd::: Appending 750 points
+Response ready: n1
+sd::: Append Success at path: 0
+proc::: Saved to SD
+proc::: Processing Complete
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 9
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Fail
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 9
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Pass
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 10
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Pass
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 9
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Fail
+knn::: Completed
+
+
+knn::: Classification
+knn::: Pass Class Training patterns: 3
+knn::: Fail Class Training patterns: 3
+knn::: New DTW values: 9
+knn::: Training model
+knn::: Model trained with 6 examples
+knn::: k = 3
+knn::: Confidence: 66.67%
+knn::: Fail
+knn::: Completed
+
+
+sd::: Performance Metrics
+sd::: TP = 2; TN = 2; FP = 0; FN = 1
+sd::: Accuracy = 0.80
+sd::: Precision = 1.00
+sd::: Recall = 0.67
+sd::: FAR = 0.00
+sd::: FRR = 0.33
+sd::: F1 = 0.80
+
+
+����������������������������������������������������������������s Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+System Boot
+Queue created
+comm_ini::: Initialized
+sd::: Pass signatures = 6
+sd::: Fail signatures = 6
+sd::: Initialized
+knn_init::: Classifier initialized
+knn_init::: Features: 5
+knn_init::: K value: 3
+knn_init::: Confidence threshold: 0.30
+---- Sent utf8 encoded message: "j" ----
+lock::: Shared Resource (Sign) LockedTasks created
+System Ready
+
+
+
+proc::: Processing Task
+proc::: Trigger DTW computation
+
+sd::: DTW Computation
+sd::: Stored genuine signatures: 6
+sd::: Stored forgery signatures: 6
+
+sd::: Compute training patterns: Genuine Class
+sd::: Training for Stored[0]
+sd::: Training for Stored[1]
+proc::: Received training pattern (10 values)
+sd::: Training for Stored[2]
+proc::: Received training pattern (10 values)
+sd::: Training for Stored[3]
+proc::: Received training pattern (10 values)
+sd::: Training for Stored[4]
+proc::: Received training pattern (10 values)
+sd::: Training for Stored[5]
+proc::: Received training pattern (10 values)
+
+sd::: Compute training patterns: Forgery Class
+sd::: Training for Stored[0]
+proc::: Received training pattern (10 values)
+sd::: Training for Stored[1]
+proc::: Received training pattern (10 values)
+sd::: Training for Stored[2]
+proc::: Received training pattern (10 values)
+sd::: Training for Stored[3]
+proc::: Received training pattern (10 values)
+sd::: Training for Stored[4]
+proc::: Received training pattern (10 values)
+2
+sd::: Training for Stored[5]
+proc::: Received training pattern (10 values)
+6
+rx_comm::: Received 100/750
+rx_comm::: Received 200/750
+rx_comm::: Received 300/750
+rx_comm::: Received 400/750
+5
+rx_comm::: Received 500/750
+proc::: Received training pattern (10 values)
+
+proc::: Total training patterns = 12
+rx_comm::: Received 600/750
+rx_comm::: Received 700/750
+lock::: Shared Resource (Sign) Unlocked
+sd::: Mutex sign_lock locked
+sd::: Computing new signature DTW.
+sd::: New vs Genuine Stored[0]
+sd::: New vs Genuine Stored[1]
+sd::: New vs Genuine Stored[2]
+sd::: New vs Genuine Stored[3]
+sd::: New vs Genuine Stored[4]
+sd::: New vs Genuine Stored[5]
+sd::: New vs Forgery Stored[0]
+sd::: New vs Forgery Stored[1]
+sd::: New vs Forgery Stored[2]
+sd::: New vs Forgery Stored[3]
+sd::: New vs Forgery Stored[4]
+sd::: New vs Forgery Stored[5]
+sd::: Mutex sign_lock unlocked
+sd::: New DTW
+sd::: Total: 1 new + 12 dataset
+sd::: Completed SD Transactions
+
+proc::: Received new DTW (12 values)
+proc::: Mutex sign_lock unlocked
+proc::: New signature: = 751 points
+
+knn::: Classification
+knn::: Pass Class Training patterns: 6
