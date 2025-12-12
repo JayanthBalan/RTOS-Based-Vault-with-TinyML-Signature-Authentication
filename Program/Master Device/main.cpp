@@ -31,30 +31,41 @@ void loop()
   delay(1);
 
   vector<sigpoints> sign = lcd_sign_reader();
+
   vector<sigpoints> sign_opt = sig_resample(sign);
 
-  delay(5);
+  delay(1);
   tx_comm(sign_opt);
-  delay(50);
+  delay(5);
+
+  Serial.println("main::: Latency measure start");
+  uint32_t start_time = millis();
 
   while(1)
   {
     rx_comm(&a, &b);
-    delay(200);
     
     if(a =='y' && b == '1')
     {
       Serial.println("lcd::: Valid Signature\nlcd::: Storage Page");
+      uint32_t latency = millis() - start_time;
+      Serial.print("main::: Latency = ");
+      Serial.print(latency);
+      Serial.println(" ms");
       lcd_lock_screen(true);
-      delay(30);
+      delay(3);
       lcd_storage_page(a, b);
       break;
     }
     else if(a =='n' && b == '1')
     {
-      Serial.println("comm_rx::: Invalid Signature\nRestart");
+      Serial.println("lcd::: Invalid Signature\nlcd::: Restart");
+      uint32_t latency = millis() - start_time;
+      Serial.print("main::: Latency = ");
+      Serial.print(latency);
+      Serial.println(" ms");
       lcd_lock_screen(false);
-      delay(30);
+      delay(3);
       break;
     }
     else if(a == 'x' && b == 'x')
@@ -75,13 +86,14 @@ void loop()
       Serial.print("comm_rx::: Invalid Reply = ");
       Serial.print(a);
       Serial.println(b);
-      delay(1000);
+      delay(5);
     }
+    delay(10);
   }
 }
 
 vector<sigpoints> sig_resample(const vector<sigpoints>& sig) {
-  int original_size = sig.size(), target = 750;
+  int original_size = sig.size(), target = 150;
     
   if(original_size == target) {
       return sig;
