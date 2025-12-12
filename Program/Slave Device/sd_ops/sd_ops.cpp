@@ -4,7 +4,13 @@ File myFile;
 const char* path0 = "/NexRoot/signat0.bin";
 const char* path1 = "/NexRoot/signat1.bin";
 int df_pass, df_fail;
+SemaphoreHandle_t sd_lock;
+SemaphoreHandle_t train_fin;
+SemaphoreHandle_t dtw_fin;
+vector<float>* dtw_new1 = new vector<float>();
+vector<float>* dtw_new2 = new vector<float>();
 
+#define MAX_CNT 3
 
 int count_signatures(bool sel_fil) {
     const char* path = (sel_fil) ? path1 : path0;
@@ -30,6 +36,7 @@ int count_signatures(bool sel_fil) {
 }
 
 vector<sigpoints>* sign_index(int index, bool sel_fil) {
+    xSemaphoreTake(sd_lock, portMAX_DELAY);
     const char* path = (sel_fil) ? path1 : path0;
     File file = SD.open(path, FILE_READ);
     if(!file){
@@ -67,6 +74,7 @@ vector<sigpoints>* sign_index(int index, bool sel_fil) {
     }
     
     file.close();
+    xSemaphoreGive(sd_lock);
     return sig;
 }
 
@@ -103,6 +111,10 @@ void sd_init(){
     Serial.println(df_pass);
     Serial.print("sd::: Fail signatures = ");
     Serial.println(df_fail);
+
+    sd_lock = xSemaphoreCreateMutex();
+    train_fin = xSemaphoreCreateCounting(2, 0);
+    dtw_fin = xSemaphoreCreateCounting(2, 0);
     
     Serial.println("sd::: Initialized");
 }
@@ -137,6 +149,206 @@ void append_dat(const vector<sigpoints> &sigvec, bool path_sel){
     vTaskDelay(pdMS_TO_TICKS(10));
 }
 
+void train_proc_1(void *param) {
+    ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+    Serial.println("proc::: Start Training Process 1");
+
+    if(df_pass >= 2) {
+        Serial.println("\nsd::: Compute training patterns: Genuine Class");
+            
+        for(int i = 0; i < df_pass; i++) {
+            Serial.print("sd::: Training 1 for Stored[");
+            Serial.print(i);
+            Serial.println("]");
+            vTaskDelay(pdMS_TO_TICKS(10));
+            yield();
+                    
+            vector<float>* pattern = new vector<float>();
+                    
+            vector<sigpoints>* sig_i = sign_index(i, true);
+            if(sig_i == nullptr) {
+                delete pattern;
+                Serial.println("sd::: ERROR reading sig_i");
+                break;
+            }
+                    
+            for(int j = 0; j < df_pass; j++) {
+                if(i != j) {
+                    vector<sigpoints>* sig_j = sign_index(j, true);
+                    if(sig_j == nullptr) {
+                        Serial.println("sd::: ERROR reading sig_j");
+                        continue;
+                    }
+                
+                    float dist = dtw_distance(*sig_i, *sig_j);
+                    pattern->push_back(dist);
+                
+                    delete sig_j;
+                    vTaskDelay(pdMS_TO_TICKS(15));
+                    yield();
+                }
+            }
+            for(int j = 0; j < df_fail; j++) {
+                if(i != j) {
+                    vector<sigpoints>* sig_j = sign_index(j, false);
+                    if(sig_j == nullptr) {
+                        Serial.println("sd::: ERROR reading sig_j");
+                        continue;
+                    }
+                            
+                    float dist = dtw_distance(*sig_i, *sig_j);
+                    pattern->push_back(dist);
+                            
+                    delete sig_j;
+                    vTaskDelay(pdMS_TO_TICKS(15));
+                    yield();
+                }
+            }
+                
+            delete sig_i;
+
+            while(xQueueSend(sig_transfer_Q1, &pattern, pdMS_TO_TICKS(100)) != pdPASS) {
+                Serial.println("sd::: Queue full");
+                vTaskDelay(pdMS_TO_TICKS(300));
+            }
+        }
+    }
+    else {
+        vector<float>* dummy = new vector<float>();
+        dummy->push_back(0.0);
+        xQueueSend(sig_transfer_Q1, &dummy, portMAX_DELAY);
+        Serial.println("sd::: Dummy pattern");
+    }
+
+    xSemaphoreGive(train_fin);
+    vTaskDelete(NULL);
+}
+void train_proc_2(void *param) {
+    ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+    Serial.println("proc::: Start Training Process 2");
+
+    if(df_fail >= 2) {
+        Serial.println("\nsd::: Compute training patterns: Forgery Class");
+            
+        for(int i = 0; i < df_fail; i++) {
+            Serial.print("sd::: Training 2 for Stored[");
+            Serial.print(i);
+            Serial.println("]");
+            vTaskDelay(pdMS_TO_TICKS(10));
+            yield();
+                    
+            vector<float>* pattern = new vector<float>();
+                    
+            vector<sigpoints>* sig_i = sign_index(i, false);
+            if(sig_i == nullptr) {
+                delete pattern;
+                Serial.println("sd::: ERROR reading sig_i");
+                break;
+            }
+                    
+            for(int j = 0; j < df_pass; j++) {
+                if(i != j) {
+                    vector<sigpoints>* sig_j = sign_index(j, true);
+                    if(sig_j == nullptr) {
+                        Serial.println("sd::: ERROR reading sig_j");
+                        continue;
+                    }
+                    
+                    float dist = dtw_distance(*sig_i, *sig_j);
+                    pattern->push_back(dist);
+                
+                    delete sig_j;
+                    vTaskDelay(pdMS_TO_TICKS(15));
+                    yield();
+                }
+            }
+            for(int j = 0; j < df_fail; j++) {
+                if(i != j) {
+                    vector<sigpoints>* sig_j = sign_index(j, false);
+                    if(sig_j == nullptr) {
+                        Serial.println("sd::: ERROR reading sig_j");
+                        continue;
+                    }
+                            
+                    float dist = dtw_distance(*sig_i, *sig_j);
+                    pattern->push_back(dist);
+                        
+                    delete sig_j;
+                    vTaskDelay(pdMS_TO_TICKS(15));
+                    yield();
+                }
+            }
+                
+            delete sig_i;
+
+            while(xQueueSend(sig_transfer_Q2, &pattern, pdMS_TO_TICKS(100)) != pdPASS) {
+                Serial.println("sd::: Queue full");
+                vTaskDelay(pdMS_TO_TICKS(300));
+            }
+        }
+    }
+    else {
+        vector<float>* dummy = new vector<float>();
+        dummy->push_back(0.0);
+        xQueueSend(sig_transfer_Q2, &dummy, portMAX_DELAY);
+        Serial.println("sd::: Dummy pattern");
+    }
+
+    xSemaphoreGive(train_fin);
+    vTaskDelete(NULL);
+}
+
+void class_task1(void *param)
+{
+    ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        
+    for(int i = 0; i < df_pass; i++) {
+        Serial.print("sd::: New vs Genuine Stored[");
+        Serial.print(i);
+        Serial.println("]");
+            
+        vector<sigpoints>* stored_sig = sign_index(i, true);
+        if(stored_sig == nullptr) {
+            Serial.println("sd::: Error reading signature");
+            break;
+        }
+            
+        float dist = dtw_distance(sign, *stored_sig);
+        dtw_new1->push_back(dist);
+            
+        delete stored_sig;
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
+
+    xSemaphoreGive(dtw_fin);
+    vTaskDelete(NULL);
+}
+void class_task2(void *param)
+{
+    ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
+    for(int i = 0; i < df_fail; i++) {
+        Serial.print("sd::: New vs Forgery Stored[");
+        Serial.print(i);
+        Serial.println("]");
+            
+        vector<sigpoints>* stored_sig = sign_index(i, false);
+        if(stored_sig == nullptr) {
+            Serial.println("sd::: Error reading signature");
+            break;
+        }
+            
+        float dist = dtw_distance(sign, *stored_sig);
+        dtw_new2->push_back(dist);
+            
+        delete stored_sig;
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
+
+    xSemaphoreGive(dtw_fin);
+    vTaskDelete(NULL);
+}
+
 void read_dat(void* param){
     while(1) {
         vTaskSuspend(NULL);
@@ -167,184 +379,26 @@ void read_dat(void* param){
             vTaskDelay(pdMS_TO_TICKS(10));
             continue;
         }
-        
-        if(df_pass >= 2) {
-            Serial.println("\nsd::: Compute training patterns: Genuine Class");
-            
-            for(int i = 0; i < df_pass; i++) {
-                Serial.print("sd::: Training for Stored[");
-                Serial.print(i);
-                Serial.println("]");
-                
-                vector<float>* pattern = new vector<float>();
-                
-                vector<sigpoints>* sig_i = sign_index(i, true);
-                if(sig_i == nullptr) {
-                    delete pattern;
-                    Serial.println("sd::: ERROR reading sig_i");
-                    break;
-                }
-                
-                for(int j = 0; j < df_pass; j++) {
-                    if(i != j) {
-                        vector<sigpoints>* sig_j = sign_index(j, true);
-                        if(sig_j == nullptr) {
-                            Serial.println("sd::: ERROR reading sig_j");
-                            continue;
-                        }
-                        
-                        float dist = dtw_distance(*sig_i, *sig_j);
-                        pattern->push_back(dist);
-                        
-                        delete sig_j;
-                        vTaskDelay(pdMS_TO_TICKS(5));
-                        yield();
-                    }
-                }
-                for(int j = 0; j < df_fail; j++) {
-                    if(i != j) {
-                        vector<sigpoints>* sig_j = sign_index(j, false);
-                        if(sig_j == nullptr) {
-                            Serial.println("sd::: ERROR reading sig_j");
-                            continue;
-                        }
-                        
-                        float dist = dtw_distance(*sig_i, *sig_j);
-                        pattern->push_back(dist);
-                        
-                        delete sig_j;
-                        delay(pdMS_TO_TICKS(5));
-                        yield();
-                    }
-                }
-                
-                delete sig_i;
 
-                while(xQueueSend(sig_transfer_Q, &pattern, pdMS_TO_TICKS(100)) != pdPASS) {
-                    Serial.println("sd::: Queue full");
-                    vTaskDelay(pdMS_TO_TICKS(300));
-                }
-            }
-        }
-        else {
-            vector<float>* dummy = new vector<float>();
-            dummy->push_back(0.0);
-            xQueueSend(sig_transfer_Q, &dummy, portMAX_DELAY);
-            Serial.println("sd::: Dummy pattern");
-        }
+        xTaskNotifyGive(train_proc_1_handle);
+        xTaskNotifyGive(train_proc_2_handle);
 
-        if(df_fail >= 2) {
-            Serial.println("\nsd::: Compute training patterns: Forgery Class");
-            
-            for(int i = 0; i < df_fail; i++) {
-                Serial.print("sd::: Training for Stored[");
-                Serial.print(i);
-                Serial.println("]");
-                
-                vector<float>* pattern = new vector<float>();
-                
-                vector<sigpoints>* sig_i = sign_index(i, false);
-                if(sig_i == nullptr) {
-                    delete pattern;
-                    Serial.println("sd::: ERROR reading sig_i");
-                    break;
-                }
-                
-                for(int j = 0; j < df_pass; j++) {
-                    if(i != j) {
-                        vector<sigpoints>* sig_j = sign_index(j, true);
-                        if(sig_j == nullptr) {
-                            Serial.println("sd::: ERROR reading sig_j");
-                            continue;
-                        }
-                        
-                        float dist = dtw_distance(*sig_i, *sig_j);
-                        pattern->push_back(dist);
-                        
-                        delete sig_j;
-                        vTaskDelay(pdMS_TO_TICKS(5));
-                        yield();
-                    }
-                }
-                for(int j = 0; j < df_fail; j++) {
-                    if(i != j) {
-                        vector<sigpoints>* sig_j = sign_index(j, false);
-                        if(sig_j == nullptr) {
-                            Serial.println("sd::: ERROR reading sig_j");
-                            continue;
-                        }
-                        
-                        float dist = dtw_distance(*sig_i, *sig_j);
-                        pattern->push_back(dist);
-                        
-                        delete sig_j;
-                        vTaskDelay(pdMS_TO_TICKS(5));
-                        yield();
-                    }
-                }
-                
-                delete sig_i;
+        xSemaphoreTake(train_fin, portMAX_DELAY);
+        xSemaphoreTake(train_fin, portMAX_DELAY);
 
-                while(xQueueSend(sig_transfer_Q, &pattern, pdMS_TO_TICKS(100)) != pdPASS) {
-                    Serial.println("sd::: Queue full");
-                    vTaskDelay(pdMS_TO_TICKS(300));
-                }
-            }
-        }
-        else {
-            vector<float>* dummy = new vector<float>();
-            dummy->push_back(0.0);
-            xQueueSend(sig_transfer_Q, &dummy, portMAX_DELAY);
-            Serial.println("sd::: Dummy pattern");
-        }
-
-        while(xSemaphoreTake(sign_lock, portMAX_DELAY) != pdTRUE)
-        {
-            vTaskDelay(pdMS_TO_TICKS(200));
-        }
+        xSemaphoreTake(sign_lock, portMAX_DELAY);
         Serial.println("sd::: Mutex sign_lock locked");
-
         Serial.println("sd::: Computing new signature DTW.");
-        vector<float>* dtw_new = new vector<float>();
+
+        xTaskNotifyGive(class_task1_handle);
+        xTaskNotifyGive(class_task2_handle);
+
+        xSemaphoreTake(dtw_fin, portMAX_DELAY);
+        xSemaphoreTake(dtw_fin, portMAX_DELAY);
+
+        dtw_new1->insert(dtw_new1->end(), dtw_new2->begin(), dtw_new2->end());
         
-        for(int i = 0; i < df_pass; i++) {
-            Serial.print("sd::: New vs Genuine Stored[");
-            Serial.print(i);
-            Serial.println("]");
-            
-            vector<sigpoints>* stored_sig = sign_index(i, true);
-            if(stored_sig == nullptr) {
-                Serial.println("sd::: Error reading signature");
-                break;
-            }
-            
-            float dist = dtw_distance(sign, *stored_sig);
-            dtw_new->push_back(dist);
-            
-            delete stored_sig;
-            vTaskDelay(pdMS_TO_TICKS(10));
-            yield();
-        }
-        for(int i = 0; i < df_fail; i++) {
-            Serial.print("sd::: New vs Forgery Stored[");
-            Serial.print(i);
-            Serial.println("]");
-            
-            vector<sigpoints>* stored_sig = sign_index(i, false);
-            if(stored_sig == nullptr) {
-                Serial.println("sd::: Error reading signature");
-                break;
-            }
-            
-            float dist = dtw_distance(sign, *stored_sig);
-            dtw_new->push_back(dist);
-            
-            delete stored_sig;
-            vTaskDelay(pdMS_TO_TICKS(10));
-            yield();
-        }
-        
-        while(xQueueSend(sig_transfer_Q, &dtw_new, pdMS_TO_TICKS(100)) != pdPASS) {
+        while(xQueueSend(sig_transfer_Q, &dtw_new1, pdMS_TO_TICKS(100)) != pdPASS) {
             Serial.println("sd::: Queue full");
             vTaskDelay(pdMS_TO_TICKS(100));
         }
@@ -405,6 +459,56 @@ void clear_dat()
         }
     }
 
+}
+
+void dataset_trim(bool sel_fil) {
+    const char* path = (sel_fil) ? path1 : path0;
+    
+    if(sel_fil && df_pass <= MAX_CNT) return;
+    if(!sel_fil && df_fail <= MAX_CNT) return;
+    
+    File file = SD.open(path, FILE_READ);
+    if(!file) {
+        return;
+    }
+    
+    File temp_file = SD.open("/temp.bin", FILE_WRITE);
+    if(!temp_file) {
+        file.close();
+        return;
+    }
+    
+    int idx = 0;
+    while(file.available()) {
+        uint16_t vec_size = 0;
+        if(file.read((uint8_t*)&vec_size, sizeof(uint16_t)) != sizeof(uint16_t)) break;
+        if(vec_size == 0 || vec_size > 20000) break;
+        
+        if(idx > 0) {
+            temp_file.write((uint8_t*)&vec_size, sizeof(uint16_t));
+            uint8_t buffer[256];
+            size_t remaining = vec_size * sizeof(sigpoints);
+            while(remaining > 0) {
+                size_t to_read = (remaining < 256) ? remaining : 256;
+                file.read(buffer, to_read);
+                temp_file.write(buffer, to_read);
+                remaining -= to_read;
+            }
+        } else {
+            file.seek(file.position() + vec_size * sizeof(sigpoints));
+        }
+        idx++;
+    }
+    
+    file.close();
+    temp_file.close();
+    SD.remove(path);
+    SD.rename("/temp.bin", path);
+    
+    if(sel_fil) df_pass--;
+    else df_fail--;
+    
+    Serial.println("sd::: Oldest signature deleted");
 }
 
 void performance_check()
@@ -528,9 +632,22 @@ void performance_check()
 
     float con;
     uint16_t TP = 0, TN = 0, FP = 0, FN = 0;
+    float features1[KNN_FEATURES], features2[KNN_FEATURES];
+
+    for(int i = 0; i < train_pass.size(); i++)
+    {
+        extract_features(train_pass[i], features1);
+        signatureKNN.addExample(features1, GENUINE_CLASS);
+    }
+    for(int i = 0; i < train_pass.size(); i++)
+    {
+        extract_features(train_pass[i], features2);
+        signatureKNN.addExample(features2, FORGERY_CLASS);
+    }
+
     for(int i = 0; i < test_pass.size(); i++)
     {
-        bool res = knn_classify(&con, test_pass[i], train_pass, train_fail, train_pass.size(), train_fail.size());
+        bool res = knn_classify(&con, test_pass[i], train_pass.size(), train_fail.size());
         if(res)
         {
             TP++;
@@ -543,7 +660,7 @@ void performance_check()
     }
     for(int i = 0; i < test_fail.size(); i++)
     {
-        bool res = knn_classify(&con, test_fail[i], train_pass, train_fail, train_pass.size(), train_fail.size());
+        bool res = knn_classify(&con, test_fail[i], train_pass.size(), train_fail.size());
         if(!res)
         {
             TN++;
