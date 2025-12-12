@@ -102,9 +102,7 @@ void knn_init() {
     Serial.println(CONFIDENCE_THRESHOLD);
 }
 
-bool knn_classify(float* confidence, const vector<float> &new_dtw, const vector<vector<float>> &train_pass, const vector<vector<float>>& train_fail, int num_pass, int num_fail) {
-    KNNClassifier signatureKNN(KNN_FEATURES);
-
+bool knn_classify(float* confidence, const vector<float> &new_dtw, int num_pass, int num_fail) {
     Serial.println("\nknn::: Classification");
     Serial.print("knn::: Pass Class Training patterns: ");
     Serial.println(num_pass);
@@ -119,27 +117,7 @@ bool knn_classify(float* confidence, const vector<float> &new_dtw, const vector<
         Serial.println("knn::: AUTO-ACCEPT");
         return true;
     }
-    
-    //Train all patterns
-    Serial.println("knn::: Training model");
-    for(int i = 0; i < num_pass; i++) {
-        float features[KNN_FEATURES];
-        extract_features(train_pass[i], features);
-        signatureKNN.addExample(features, GENUINE_CLASS);
-        vTaskDelay(pdMS_TO_TICKS(10));
-        yield();
-    }
-    for(int i = 0; i < num_fail; i++) {
-        float features[KNN_FEATURES];
-        extract_features(train_fail[i], features);
-        signatureKNN.addExample(features, FORGERY_CLASS);
-        vTaskDelay(pdMS_TO_TICKS(10));
-        yield();
-    }
-    Serial.print("knn::: Model trained with ");
-    Serial.print(signatureKNN.getCount());
-    Serial.println(" examples");
-    
+        
     //Classification
     float new_features[KNN_FEATURES];
     extract_features(new_dtw, new_features);
@@ -150,6 +128,9 @@ bool knn_classify(float* confidence, const vector<float> &new_dtw, const vector<
 
     Serial.print("knn::: k = ");
     Serial.println(k);
+
+    Serial.print("knn::: Classification: ");
+    Serial.println(classification == 1 ? "Genuine" : "Forgery");
     
     Serial.print("knn::: Confidence: ");
     Serial.print((*confidence) * 100);
