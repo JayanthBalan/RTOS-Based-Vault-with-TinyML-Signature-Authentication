@@ -10,7 +10,7 @@ void comms_init()
 void rx_comm(char* alpha, char* numera)
 {
     byte msg = Wire.requestFrom(8, 2);
-    delay(5);
+    delay(1);
     if (msg == 2) {
         *alpha = Wire.read();
         *numera = Wire.read();
@@ -39,10 +39,10 @@ void tx_comm(vector<sigpoints> &sign)
         Serial.println("comm_tx::: Header transmission failed");
         return;
     }
-    delay(50);
+    delay(1);
     Serial.println("comm_tx::: Header Transmitted");
 
-    delay(5);
+    delay(1);
     Serial.print("comm_tx::: vec_size = ");
     Serial.println(vec_size);
 
